@@ -38,23 +38,18 @@ namespace Control
             if (Input.GetMouseButtonDown(0))
             {
                 stanceResetTimer = 0.0f;
-                if (weaponStance)
-                {
-                    blockRotationPlayer = true;
-                    anim.SetTrigger("Attack");
-                }
-                else
-                {
-                    weaponStance = true;
-                    anim.SetTrigger("Equip");
-                }
+                anim.SetTrigger("StopUpperAction");
+                blockRotationPlayer = true;
+                anim.SetTrigger("Attack");
+
             }
             if (weaponStance == true && stanceResetTimer >= idleStanceResetTime)
             {
-                weaponStance = false;
                 anim.SetTrigger("UnEquip");
                 stanceResetTimer = 0;
+                SetWeaponStance(false);
             }
+            
             stanceResetTimer += Time.deltaTime;
         }
 
@@ -106,10 +101,15 @@ namespace Control
             return IsMoving();
         }
 
-
+        public void SetWeaponStance(bool ws)
+        {
+            weaponStance = ws;
+            anim.SetBool("WeaponStance", ws);
+        }
         #region Animation Events
         private void ResetAttack()
         {
+            Debug.Log("RESET ATTACK");
             blockRotationPlayer = false;
         }
 
