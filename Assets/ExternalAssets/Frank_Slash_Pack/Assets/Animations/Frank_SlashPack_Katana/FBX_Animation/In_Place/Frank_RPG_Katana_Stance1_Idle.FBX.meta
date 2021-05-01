@@ -473,7 +473,7 @@ ModelImporter:
     second: Weapon_Sword_Dummy
   - first:
       74: 7400000
-    second: Take 001
+    second: Katana_Stance1_Idle
   - first:
       95: 9500000
     second: //RootNode
@@ -512,7 +512,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Take 001
+      name: Katana_Stance1_Idle
       takeName: Take 001
       internalID: 0
       firstFrame: 0

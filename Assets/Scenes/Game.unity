@@ -56689,8 +56689,10 @@ MonoBehaviour:
   desiredRotationSpeed: 0.15
   blockRotationPlayer: 0
   allowPlayerRotationAmount: 0.1
-  weaponStance: 0
+  WeaponStance: 0
   idleStanceResetTime: 5
+  numberOfClicks: 0
+  maxComboDelay: 1.2
 --- !u!114 &3878827109578916973
 MonoBehaviour:
   m_ObjectHideFlags: 0

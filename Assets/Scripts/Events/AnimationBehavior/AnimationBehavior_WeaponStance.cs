@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class AnimationBehavior_WeaponStance : StateMachineBehaviour
 {
+    public Stance WeaponStance;
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<PlayerController>().SetWeaponStance(true);
+        animator.gameObject.GetComponent<PlayerController>().SetWeaponStance(WeaponStance);
+       
     }
 }
