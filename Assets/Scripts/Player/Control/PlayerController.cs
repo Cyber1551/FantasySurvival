@@ -6,10 +6,14 @@ namespace Player.Control
 {
     public enum Stance 
     { 
-        UnEquipped = 0,
+        Unequipped = 0,
         Equipped = 1
     }
-
+    public enum WeaponTypes
+    {
+        Unarmed = 0,
+        Greatsword = 1
+    }
     public class PlayerController: MonoBehaviour
     {
         public float Speed;
@@ -22,7 +26,8 @@ namespace Player.Control
         [SerializeField] float desiredRotationSpeed = 0.1f;
         [SerializeField] bool blockRotationPlayer;
         [SerializeField] float allowPlayerRotationAmount = 0.3f;
-        [SerializeField] Stance WeaponStance = Stance.UnEquipped;
+        [SerializeField] Stance WeaponStance = Stance.Unequipped;
+        [SerializeField] WeaponTypes WeaponType = WeaponTypes.Unarmed;
         [SerializeField] float idleStanceResetTime = 5.0f;
         float stanceResetTimer = 0.0f;
         public int numberOfClicks = 0;
@@ -44,7 +49,19 @@ namespace Player.Control
         {
             InputMagnitude();
             PlayerCombat();
+
+            if (Input.GetKeyDown(KeyCode.P) && numberOfClicks == 0)
+            {
+                SwitchWeapon();
+            }
          }
+        private void SwitchWeapon()
+        {
+
+            WeaponType = (WeaponType == WeaponTypes.Unarmed) ? WeaponTypes.Greatsword : WeaponTypes.Unarmed;
+            anim.SetInteger("Weapon", (int)WeaponType);
+            anim.SetTrigger("SwitchWeapon");
+        }
 
         private void FreeFormMoveAndRotation()
         {
@@ -63,6 +80,7 @@ namespace Player.Control
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
             }
         }
+        
 
         private void InputMagnitude()
         {
@@ -112,7 +130,7 @@ namespace Player.Control
                 anim.Play("UnEquip");
                 Debug.Log(stanceResetTimer);
                 stanceResetTimer = 0;
-                SetWeaponStance(Stance.UnEquipped);
+                SetWeaponStance(Stance.Unequipped);
             }
             stanceResetTimer += Time.deltaTime;
 
