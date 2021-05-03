@@ -1,4 +1,4 @@
-﻿using Control;
+﻿using Player.Control;
 using UnityEngine;
 
 namespace Core
@@ -14,8 +14,6 @@ namespace Core
         private void Awake()
         {
             I = this;
-            
-
         }
     }
 

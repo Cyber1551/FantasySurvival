@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Control
+namespace Player.Control
 {
     public enum Stance 
     { 
@@ -43,22 +43,6 @@ namespace Control
         void Update()
         {
             InputMagnitude();
-            /* if (Input.GetMouseButtonDown(0))
-             {
-                 stanceResetTimer = 0.0f;
-                 anim.SetTrigger("StopUpperAction");
-                 blockRotationPlayer = true;
-                 anim.SetTrigger("Attack");
-
-             }
-             if (weaponStance == true && stanceResetTimer >= idleStanceResetTime)
-             {
-                 anim.SetTrigger("UnEquip");
-                 stanceResetTimer = 0;
-                 SetWeaponStance(false);
-             }
-
-             stanceResetTimer += Time.deltaTime;*/
             PlayerCombat();
          }
 
@@ -115,7 +99,9 @@ namespace Control
                 numberOfClicks++;
                 if (numberOfClicks == 1)
                 {
+                    blockRotationPlayer = true;
                     anim.SetBool("Attack1", true);
+                    SetWeaponStance(Stance.Equipped);
                 }
                 
                 numberOfClicks = Mathf.Clamp(numberOfClicks, 0, 3);
@@ -145,7 +131,6 @@ namespace Control
         }
         public void SetWeaponStance(Stance ws)
         {
-
             WeaponStance = ws;
             anim.SetBool("WeaponStance", ws == Stance.Equipped);
             
@@ -161,13 +146,14 @@ namespace Control
         {
             if (numberOfClicks >= 2)
             {
+                blockRotationPlayer = true;
                 anim.SetBool("Attack2", true);
             }
             else
             {
                 anim.SetBool("Attack1", false);
                 numberOfClicks = 0;
-
+                blockRotationPlayer = false;
             }
         }
 
@@ -175,6 +161,7 @@ namespace Control
         {
             if (numberOfClicks >= 3)
             {
+                blockRotationPlayer = true;
                 anim.SetBool("Attack3", true);
             }
             else
@@ -182,6 +169,7 @@ namespace Control
                 anim.SetBool("Attack1", false);
                 anim.SetBool("Attack2", false);
                 numberOfClicks = 0;
+                blockRotationPlayer = false;
 
             }
         }
@@ -191,6 +179,7 @@ namespace Control
             anim.SetBool("Attack2", false);
             anim.SetBool("Attack3", false);
             numberOfClicks = 0;
+            blockRotationPlayer = false;
         }
         #endregion
     }

@@ -6,7 +6,7 @@ using System.Text;
 using UnityEngine.UI;
 using Combat.Stats;
 
-namespace Utility
+namespace UI
 {
     public class Tooltip : MonoBehaviour
     {
