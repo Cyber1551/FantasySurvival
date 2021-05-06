@@ -12,7 +12,8 @@ namespace Player.Control
     public enum WeaponTypes
     {
         Unarmed = 0,
-        Greatsword = 1
+        Greatsword = 1,
+        Katana = 2
     }
     public class PlayerController: MonoBehaviour
     {
@@ -58,7 +59,7 @@ namespace Player.Control
         private void SwitchWeapon()
         {
 
-            WeaponType = (WeaponType == WeaponTypes.Unarmed) ? WeaponTypes.Greatsword : WeaponTypes.Unarmed;
+            WeaponType = (WeaponType == WeaponTypes.Unarmed) ? WeaponTypes.Katana : WeaponTypes.Unarmed;
             anim.SetInteger("Weapon", (int)WeaponType);
             anim.SetTrigger("SwitchWeapon");
         }
