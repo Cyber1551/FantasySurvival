@@ -89,11 +89,11 @@ namespace Player.Control
             InputZ = input.Vertical;
             InputX = input.Horizontal;
             //moveVector = new Vector3(InputX, 0f, InputZ).normalized;
-            anim.SetFloat("X", InputX, 0.0f, Time.deltaTime * 2f);
-            anim.SetFloat("Z", InputZ, 0.0f, Time.deltaTime * 2f);
+            //anim.SetFloat("X", InputX, 0.0f, Time.deltaTime * 2f);
+            //anim.SetFloat("Z", InputZ, 0.0f, Time.deltaTime * 2f);
 
             Speed = new Vector2(InputX, InputZ).sqrMagnitude;
-           // Debug.Log(Speed);
+
             if (Speed > allowPlayerRotationAmount)
             {
                 anim.SetFloat("InputMagnitude", Speed, 0.0f, Time.fixedDeltaTime);
